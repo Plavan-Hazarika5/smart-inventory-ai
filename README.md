@@ -5,7 +5,7 @@ A full-stack internal operations tool for inventory health monitoring, reorder p
 ## Live Demo
 
 - Frontend: [smart-inventory-ai-plavan.netlify.app](https://smart-inventory-ai-plavan.netlify.app/)
-- API: `<add-your-render-api-url>`
+- API: [smart-inventory-ai-l5z2.onrender.com](https://smart-inventory-ai-l5z2.onrender.com)
 
 ## Tech Stack
 
