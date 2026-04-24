@@ -2,6 +2,11 @@
 
 A full-stack internal operations tool for inventory health monitoring, reorder planning, supplier draft generation, and guardrail-based approvals.
 
+## Live Demo
+
+- Frontend: [smart-inventory-ai-plavan.netlify.app](https://smart-inventory-ai-plavan.netlify.app/)
+- API: `<add-your-render-api-url>`
+
 ## Tech Stack
 
 - Frontend: React + Vite + Tailwind CSS + React Query
