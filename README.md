@@ -7,6 +7,22 @@ A full-stack internal operations tool for inventory health monitoring, reorder p
 - Frontend: [smart-inventory-ai-plavan.netlify.app](https://smart-inventory-ai-plavan.netlify.app/)
 - API: [smart-inventory-ai-l5z2.onrender.com](https://smart-inventory-ai-l5z2.onrender.com)
 
+## Screenshots
+
+Add screenshots to a `screenshots/` folder in the repo and replace the placeholders below:
+
+- Dashboard Overview: `screenshots/dashboard-overview.png`
+- Recommendations + Guardrails: `screenshots/recommendations-guardrails.png`
+- Export Email Preview Modal: `screenshots/export-email-preview.png`
+
+Example markdown once added:
+
+```md
+![Dashboard Overview](screenshots/dashboard-overview.png)
+![Recommendations Guardrails](screenshots/recommendations-guardrails.png)
+![Email Preview Modal](screenshots/export-email-preview.png)
+```
+
 ## Tech Stack
 
 - Frontend: React + Vite + Tailwind CSS + React Query
@@ -54,6 +70,37 @@ Smart Inventory Ai/
    - `npm run dev --workspace client`
 
 App: [http://localhost:5173](http://localhost:5173)
+
+## Deployment
+
+### Frontend (Netlify)
+
+- Base directory: `client`
+- Build command: `npm run build`
+- Publish directory: `dist`
+- Env var:
+  - `VITE_API_BASE_URL=https://smart-inventory-ai-l5z2.onrender.com`
+
+### Backend (Render)
+
+- Root directory: `server`
+- Build command: `npm install && npx prisma migrate deploy && npm run prisma:generate && npm run build`
+- Start command: `npm start`
+- Env vars:
+  - `DATABASE_URL=<your-postgres-url>`
+  - `PORT=10000`
+  - `CORS_ORIGINS=https://smart-inventory-ai-plavan.netlify.app`
+
+### Database
+
+- PostgreSQL (Neon/Supabase/Render Postgres compatible)
+- Seed command (one-time): `npm run seed --workspace server`
+
+## Resume-ready Impact
+
+- Built a full-stack inventory decisioning system that converts stock and sales telemetry into reorder recommendations with confidence scoring.
+- Implemented over-order guardrails, inline override approvals, and persistent audit logging to improve operational control and traceability.
+- Delivered supplier-ready outputs (CSV and email drafts) and a KPI dashboard that accelerates procurement workflows end-to-end.
 
 ## Portfolio-ready Summary
 
