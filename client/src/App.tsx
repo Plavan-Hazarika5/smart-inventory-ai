@@ -63,6 +63,8 @@ const confidenceStyles: Record<ReorderConfidence, string> = {
   medium: 'bg-yellow-100 text-yellow-800',
   low: 'bg-red-100 text-red-700',
 }
+const API_BASE = (import.meta.env.VITE_API_BASE_URL as string | undefined)?.replace(/\/$/, '') ?? ''
+const apiUrl = (path: string) => `${API_BASE}${path}`
 
 const SkeletonCard = () => <div className="h-24 animate-pulse rounded-xl bg-slate-200" />
 const SkeletonTable = () => <div className="h-64 animate-pulse rounded-xl bg-slate-200" />
@@ -87,13 +89,13 @@ async function getErrorMessage(response: Response, fallback: string) {
 }
 
 async function fetchInventoryStatus(): Promise<InventoryItem[]> {
-  const response = await fetch('/api/inventory/velocity')
+  const response = await fetch(apiUrl('/api/inventory/velocity'))
   if (!response.ok) throw new Error('Failed to load inventory velocity.')
   return (await response.json()).data
 }
 
 async function fetchRecommendations(supplierId?: number, category?: string): Promise<Recommendation[]> {
-  const response = await fetch('/api/reorder/recommend', {
+  const response = await fetch(apiUrl('/api/reorder/recommend'), {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ ...(supplierId ? { supplier_id: supplierId } : {}), ...(category ? { category } : {}) }),
@@ -103,19 +105,19 @@ async function fetchRecommendations(supplierId?: number, category?: string): Pro
 }
 
 async function fetchAuditLogs(): Promise<AuditLogItem[]> {
-  const response = await fetch('/api/reorder/audit')
+  const response = await fetch(apiUrl('/api/reorder/audit'))
   if (!response.ok) throw new Error('Failed to load audit logs.')
   return (await response.json()).data
 }
 
 async function fetchEmailPreviews(confirmOverorder = false): Promise<EmailPreview[]> {
-  const response = await fetch(`/api/reorder/export/email-preview${confirmOverorder ? '?confirm_overorder=true' : ''}`)
+  const response = await fetch(apiUrl(`/api/reorder/export/email-preview${confirmOverorder ? '?confirm_overorder=true' : ''}`))
   if (!response.ok) throw new Error(await getErrorMessage(response, 'Failed to load email previews.'))
   return (await response.json()).data
 }
 
 async function downloadReorderCsv(confirmOverorder = false): Promise<void> {
-  const response = await fetch(`/api/reorder/export/csv${confirmOverorder ? '?confirm_overorder=true' : ''}`)
+  const response = await fetch(apiUrl(`/api/reorder/export/csv${confirmOverorder ? '?confirm_overorder=true' : ''}`))
   if (!response.ok) throw new Error(await getErrorMessage(response, 'Failed to export CSV.'))
   const csvText = await response.text()
   const blob = new Blob([csvText], { type: 'text/csv;charset=utf-8;' })
@@ -130,7 +132,7 @@ async function downloadReorderCsv(confirmOverorder = false): Promise<void> {
 }
 
 async function approveRecommendation(payload: { sku: string; final_qty?: number; confirm_overorder?: boolean }) {
-  const response = await fetch('/api/reorder/approve', {
+  const response = await fetch(apiUrl('/api/reorder/approve'), {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ ...payload, user_name: 'admin' }),
@@ -139,7 +141,7 @@ async function approveRecommendation(payload: { sku: string; final_qty?: number;
 }
 
 async function rejectRecommendation(payload: { sku: string }) {
-  const response = await fetch('/api/reorder/reject', {
+  const response = await fetch(apiUrl('/api/reorder/reject'), {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ ...payload, user_name: 'admin' }),
