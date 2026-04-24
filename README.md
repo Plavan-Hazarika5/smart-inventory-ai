@@ -9,19 +9,9 @@ A full-stack internal operations tool for inventory health monitoring, reorder p
 
 ## Screenshots
 
-Add screenshots to a `screenshots/` folder in the repo and replace the placeholders below:
-
-- Dashboard Overview: `screenshots/dashboard-overview.png`
-- Recommendations + Guardrails: `screenshots/recommendations-guardrails.png`
-- Export Email Preview Modal: `screenshots/export-email-preview.png`
-
-Example markdown once added:
-
-```md
 ![Dashboard Overview](screenshots/dashboard-overview.png)
 ![Recommendations Guardrails](screenshots/recommendations-guardrails.png)
 ![Email Preview Modal](screenshots/export-email-preview.png)
-```
 
 ## Tech Stack
 
