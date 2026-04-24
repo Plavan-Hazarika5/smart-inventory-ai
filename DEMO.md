@@ -1,4 +1,4 @@
-# Low-Stock Auto Reorder Assistant Demo Script
+# Smart Inventory AI Demo Script
 
 ## 1) Startup
 

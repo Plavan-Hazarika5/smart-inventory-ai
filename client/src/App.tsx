@@ -261,7 +261,7 @@ function App() {
   return (
     <main className="min-h-screen bg-slate-50 px-4 py-6 text-slate-900 md:px-8">
       <div className="mx-auto w-full max-w-[1280px]">
-        <h1 className="mb-1 text-2xl font-semibold md:text-3xl">Low-Stock Auto Reorder Assistant</h1>
+        <h1 className="mb-1 text-2xl font-semibold md:text-3xl">Smart Inventory AI</h1>
         <p className="mb-5 text-sm text-slate-500">Day 7 - Demo ready inventory operations dashboard</p>
 
         <div className="mb-4 flex flex-wrap gap-2">

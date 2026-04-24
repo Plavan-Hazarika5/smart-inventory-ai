@@ -1,4 +1,4 @@
-# Low-Stock Auto Reorder Assistant
+# Smart Inventory AI
 
 A full-stack internal operations tool for inventory health monitoring, reorder planning, supplier draft generation, and guardrail-based approvals.
 
