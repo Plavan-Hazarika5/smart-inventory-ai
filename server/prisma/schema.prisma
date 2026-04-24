@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Supplier {
+  id            Int       @id @default(autoincrement())
+  name          String
+  email         String
+  leadTimeDays  Int       @map("lead_time_days")
+  products      Product[]
+
+  @@map("suppliers")
+}
+
+model Product {
+  id            Int      @id @default(autoincrement())
+  sku           String   @unique
+  name          String
+  category      String
+  supplierId    Int      @map("supplier_id")
+  minStock      Int      @map("min_stock")
+  reorderPoint  Int      @map("reorder_point")
+  currentStock  Int      @map("current_stock")
+  unitCostCents Int      @map("unit_cost")
+  supplier      Supplier @relation(fields: [supplierId], references: [id])
+  salesHistory  SaleHistory[]
+  auditLog      AuditLog[]
+
+  @@map("products")
+}
+
+model SaleHistory {
+  id         Int      @id @default(autoincrement())
+  skuId      Int      @map("sku_id")
+  unitsSold  Int      @map("units_sold")
+  saleDate   DateTime @map("sale_date")
+  product    Product  @relation(fields: [skuId], references: [id])
+
+  @@map("sales_history")
+}
+
+model AuditLog {
+  id          Int      @id @default(autoincrement())
+  skuId       Int      @map("sku_id")
+  action      String
+  originalQty Int      @map("original_qty")
+  finalQty    Int      @map("final_qty")
+  userName    String   @map("user_name")
+  timestamp   DateTime @default(now())
+  product     Product  @relation(fields: [skuId], references: [id])
+
+  @@map("audit_log")
+}

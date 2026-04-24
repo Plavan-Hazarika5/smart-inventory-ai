@@ -1,0 +1,19 @@
+{
+  "name": "smart-inventory-ai",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Low-Stock Auto Reorder Assistant monorepo",
+  "scripts": {
+    "dev": "npm run dev --workspace server & npm run dev --workspace client",
+    "dev:server": "npm run dev --workspace server",
+    "dev:client": "npm run dev --workspace client",
+    "build": "npm run build --workspace server && npm run build --workspace client"
+  },
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
